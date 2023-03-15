@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="college_mark_action" model="ir.actions.act_window">
+            <field name="name">Marksheet</field>
+            <field name="res_model">college.marksheet</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="college_mark_view_form" model="ir.ui.view">
+            <field name="name">college.marksheet.form</field>
+            <field name="model">college.marksheet</field>
+            <field name="arch" type="xml">
+                <form string="Courses form">
+                    <header>
+                        <button name="generate_total" class="oe_highlight" string="Compute Total"
+                                type="object" attrs="{'invisible': [('button_visibility', '=', True)]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="student_id"/>
+                                <field name="exam_id"/>
+                                <field name="class_id"/>
+                                <field name="promotion_id"/>
+                            </group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="semester_id"/>
+                                <field name="is_pass" widget="boolean_toggle"/>
+                                <field name="button_visibility" attrs="{'invisible':True}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mark list">
+                                <field name="paper_ids">
+                                    <tree editable="bottom" string="Marklist">
+                                        <field name="subject_id"/>
+                                        <field name="mark"/>
+                                        <field name="maximum_mark"/>
+                                        <field name="pass_mark"/>
+                                        <field name="is_pass" widget="boolean_toggle"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="grand_total">
+                            <field name="grand_total" colspan="2" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="college_marksheet_view_tree" model="ir.ui.view">
+            <field name="name">college.marksheet.tree</field>
+            <field name="model">college.marksheet</field>
+            <field name="arch" type="xml">
+                <tree default_order='grand_total desc' >
+                    <field name="student_id"/>
+                    <field name="exam_id"/>
+                    <field name="class_id"/>
+                    <field name="course_id"/>
+                    <field name="semester_id"/>
+                    <field name="grand_total"/>
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

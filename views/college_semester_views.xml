@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        view  for menu-->
+        <record id="college_semester_action" model="ir.actions.act_window">
+            <field name="name">Semester</field>
+            <field name="res_model">college.semester</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--        form view for semester-->
+
+        <record id="college_semester_view_form" model="ir.ui.view">
+            <field name="name">college.semester.form</field>
+            <field name="model">college.semester</field>
+            <field name="arch" type="xml">
+                <form string="Semester form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="number_of_semester"/>
+                            <field name="course_ids"/>
+                        </group>
+                        <notebook>
+                            <page string="Syllabus">
+                                <field name="syllabus_ids" editable="bottom"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

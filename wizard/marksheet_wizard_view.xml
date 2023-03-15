@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="marksheet_wizard_view_form" model="ir.ui.view">
+            <field name="name">marksheet.wizard.form</field>
+            <field name="model">marksheet.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Report">
+                    <group class="oe_title">
+                        <field name="report_wise" widget="radio"/>
+                        <field name="student_id" attrs="{'invisible': [('report_wise', '=', 'class_wise')]}" options="{'no_create':True}"/>
+                        <field name="class_id" attrs="{'invisible': [('report_wise', '=', 'student_wise')]}" options="{'no_create':True}"/>
+                        <field name="semester_id" options="{'no_create':True}"/>
+                        <field name="exam_type"/>
+                    </group>
+                    <footer>
+                        <button name="action_print" string="Print Pdf" type="object" class="btn-primary"/>
+                        <button name="print_xlsx_report" type="object" string="Print Xls" class="btn-primary"/>
+                        <button string="Cancel" class="btn btn-danger" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="marksheet_wizard_action" model="ir.actions.act_window">
+            <field name="name">Marksheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">marksheet.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="marksheet_wizard_view_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

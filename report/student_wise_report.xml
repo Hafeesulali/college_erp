@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_report_marksheet" model="ir.actions.report">
+            <field name="name">Marksheet</field>
+            <field name="model">college.marksheet</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">college_erp.marksheet_report</field>
+            <field name="report_file">college_erp.marksheet_report</field>
+        </record>
+
+
+        <template id="marksheet_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <t t-if="student_id">
+                        <div class="page">
+                            <h2 style="text-align:center;"><t t-esc="student_id"/>:Mark List
+                            </h2>
+                            <h4 style="text-align:center;"><t t-esc="course"/>-
+                                <t t-esc="academic_year"/>
+                            </h4>
+                            <t t-if="exam_type">
+                                <h5>Exam:
+                                    <t t-esc="exam_type"/>
+                                </h5>
+                            </t>
+                            <t t-if="result"><h5>Result:Pass</h5></t>
+                            <t t-else=""><h5>Result:Fail</h5></t>
+
+                        </div>
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Mark</th>
+                                        <th>Pass Mark</th>
+                                        <th>Pass/Fail</th>
+                                    </tr>
+                                </thead>
+                                <t t-foreach="sql_data" t-as="res">
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>
+                                                <t t-esc="res['name']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="res['mark']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="res['pass_mark']"/>
+                                            </td>
+                                            <td>
+                                                <t t-if="res['is_pass']">Pass</t>
+                                                <t t-else="">Fail</t>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </t>
+                            </table>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="page">
+                            <h2 style="text-align:center;">Mark List</h2>
+                            <h6>Semester:
+                                <t t-esc="semester"/>
+                            </h6>
+                            <h6>Exam:
+                                <t t-esc="exam_type"/>
+                            </h6>
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student</th>
+                                            <t t-foreach="subjects" t-as="sub">
+                                                <th>
+                                                    <t t-esc="sub"/>
+                                                </th>
+                                            </t>
+                                            <th>Pass/Fail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="sql_data" t-as="res">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="sql_data[res]['name']"/>
+                                                </td>
+                                                <t t-foreach="subjects" t-as="paper">
+                                                    <td>
+                                                        <t t-esc="sql_data[res][paper]"/>
+                                                    </td>
+                                                </t>
+                                                <td>
+                                                    <t t-if="sql_data[res]['pass_fail']">Pass</t>
+                                                    <t t-else="">Fail</t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

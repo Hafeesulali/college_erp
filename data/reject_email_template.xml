@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--   <data>-->
+       <record id="reject_template" model="mail.template">
+           <field name="name">Admission</field>
+           <field name="model_id" ref="college_erp.model_college_admission"/>
+           <field name="auto_delete" eval="True"/>
+           <field name="email_from">{{user.email}}</field>
+           <field name="email_to">{{object.email}}</field>
+<!--           <field name="report_template" ref="action_example_pdf"/>-->
+           <field name="subject">Rejected</field>
+           <field name="body_html" type="html">
+               <div style="margin:0px; padding:0px;">
+               <p>
+                sorry <t t-out="object.first_name"/>,
+                   <br/>
+                   <br/>
+                   Your application has been rejected
+                   <br/>
+               </p>
+               Regards,
+               <br/>
+               <t t-out="user.name"/>
+               </div>
+           </field>
+       </record>
+<!--   </data>-->
+</odoo>

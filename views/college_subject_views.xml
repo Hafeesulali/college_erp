@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="college_subject_action" model="ir.actions.act_window">
+            <field name="name">Subjects</field>
+            <field name="res_model">college.subjects</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+
+
+
+        <record id="college_subject_view_tree" model="ir.ui.view">
+            <field name="name">college.subjects.tree</field>
+            <field name="model">college.subjects</field>
+            <field name="arch" type="xml">
+                <tree string="College subjects">
+                    <field name="name" />
+                    <field name="maximum_mark" />
+                </tree>
+            </field>
+        </record>
+
+
+         <record id="college_subjects_view_form" model="ir.ui.view">
+            <field name="name">college.subjects.form</field>
+            <field name="model">college.subjects</field>
+            <field name="arch" type="xml">
+                <form string="Subject Form">
+                    <group>
+                        <field name="name" />
+                        <field name="maximum_mark" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+    </data>
+</odoo>

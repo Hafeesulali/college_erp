@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="college_menu_root" name="College Erp" >
+            <menuitem id="college_student_menu_action" action="college_student_action"/>
+        </menuitem>
+
+        <menuitem id="college_menu_root" name="College Erp" >
+            <menuitem id="college_admission_menu_action" action="college_admission_action"/>
+        </menuitem>
+
+        <menuitem id="college_menu_root" name="College Erp">
+            <menuitem id="college_fourth_level_menu" name="Report"/>
+        </menuitem>
+
+        <menuitem id="college_menu_root" name="College Erp">
+            <menuitem id="college_Third_level_menu" name="Configuration"/>
+
+        </menuitem>
+
+
+
+
+        <menuitem id="college_courses_menu_action" action="college_course_action" parent="college_Third_level_menu"/>
+        <menuitem id="college_semester_menu_action" action="college_semester_action" parent="college_Third_level_menu"/>
+        <menuitem id="college_class_menu_action" action="college_class_action" parent="college_Third_level_menu" />
+        <menuitem id="college_exam_menu_action" action="college_exam_action" parent="college_Third_level_menu" />
+        <menuitem id="college_promotional_menu_action" action="college_promotion_action" parent="college_Third_level_menu" />
+        <menuitem id="college_academic_menu_action" action="college_academic_action" parent="college_Third_level_menu" />
+        <menuitem id="marksheet_wizard_menu_action" action="marksheet_wizard_action" parent="college_fourth_level_menu" />
+
+
+
+    </data>
+</odoo>

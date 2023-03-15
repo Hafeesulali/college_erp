@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="college_class_action" model="ir.actions.act_window">
+            <field name="name">Class</field>
+            <field name="res_model">college.class</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <record id="college_class_view_tree" model="ir.ui.view">
+            <field name="name">college.class.tree</field>
+            <field name="model">college.class</field>
+            <field name="arch" type="xml">
+                <tree string="College class">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+
+         <record id="college_class_view_form" model="ir.ui.view">
+            <field name="name">college.class.form</field>
+            <field name="model">college.class</field>
+            <field name="arch" type="xml">
+                <form string="Class Form">
+                    <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="semester_id" />
+                        <field name="course_id"/>
+                        <field name="promotion_class_id"/>
+                        <field name="academic_year_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Student">
+                            <field name="student_ids" />
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+    </data>
+</odoo>

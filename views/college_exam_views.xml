@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="college_exam_view_form" model="ir.ui.view">
+            <field name="name">college.exam.form</field>
+            <field name="model">college.exam</field>
+            <field name="arch" type="xml">
+                <form string="Subject Form">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirm,completed"/>
+                        <button name="generate_mark" class="oe_highlight" string="Generate Mark Sheet"
+                                type="object" attrs="{'invisible': [('button_visibility', '=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" type="object" name="get_exam_students"
+                                    icon="fa-bars" attrs="{'invisible':[('student_count', '=', 0)]}">
+                                <field string="Student" name="student_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" type="object" name="get_marksheet"
+                                    icon="fa-bars" attrs="{'invisible':[('marksheet_count', '=', 0)]}">
+                                <field string="Marksheet" name="marksheet_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="exam_type"/>
+                                <field name="class_id" options="{'no_create':True}"/>
+                                <field name="semester_id"/>
+                                <field name="button_visibility" attrs="{'invisible':True}"/>
+                            </group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Exam paper">
+                                <field name="exam_paper_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+                <record id="ir_cron_exam_action" model="ir.cron">
+                    <field name="name">Exam Date</field>
+                    <field name="model_id" ref="model_college_exam"/>
+                    <field name="code">model.action_end_date()</field>
+                    <field name="user_id" ref="base.user_root"/>
+                    <field name="interval_number">1</field>
+                    <field name="interval_type">days</field>
+                    <field name="numbercall">-1</field>
+                </record>
+
+        <record id="college_exam_action" model="ir.actions.act_window">
+            <field name="name">Exam</field>
+            <field name="res_model">college.exam</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

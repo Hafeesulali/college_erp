@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+
+        <record id="college_paper_view_tree" model="ir.ui.view">
+            <field name="name">college.paper.tree</field>
+            <field name="model">college.paper</field>
+            <field name="arch" type="xml">
+                <tree string="College paper" editable="bottom">
+                    <field name="subject_id"/>
+                    <field name="maximum_mark"/>
+                    <field name="pass_mark"/>
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

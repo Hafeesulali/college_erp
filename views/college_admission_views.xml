@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        view  for menu-->
+        <record id="college_admission_action" model="ir.actions.act_window">
+            <field name="name">Admission</field>
+            <field name="res_model">college.admission</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="college_admission_view_form" model="ir.ui.view">
+            <field name="name">college.admission.form</field>
+            <field name="model">college.admission</field>
+            <field name="arch" type="xml">
+                <form string="Admission form">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,application,approved,done"/>
+                        <button name="button_application" class="oe_highlight" states="draft" string="Confirm"
+                                type="object"/>
+                        <button name="button_rejected" class="oe_highlight" states="application" string="Reject"
+                                type="object"/>
+                        <button name="button_done" class="oe_highlight" states="application" string="Done"
+                                type="object"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" type="object" name="get_students"
+                                    icon="fa-bars">
+                                <field string="Student" name="student_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                                <field name="father"/>
+                                <field name="mother"/>
+                            </group>
+                            <group>
+                                <field name="communication_address"/>
+                                <field name="permanent_address"
+                                       attrs="{'invisible':[('same_as_communication', '==', True)]}"/>
+                                <field name="same_as_communication"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </group>
+                            <notebook>
+                                <page string="Other info">
+                                    <group>
+                                        <field name="course_id" options="{'no_create':True}"/>
+                                        <field name="date_of_application"/>
+                                        <field name="academic_year_id"/>
+                                        <field name="previous_educational_qualification"/>
+                                        <field name="education_institute"/>
+                                        <field name="transfer_certificate"/>
+<!--                                        <field name="state"/>-->
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="seq_college_admission" model="ir.sequence">
+            <field name="name">Admission No</field>
+            <field name="code">college.admission</field>
+            <field name="prefix">AVIT</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

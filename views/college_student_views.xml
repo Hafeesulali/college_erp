@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        view  for menu-->
+        <record id="college_student_action" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">college.students</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--        tree view-->
+        <record id="college_student_view_tree" model="ir.ui.view">
+            <field name="name">college.students.tree</field>
+            <field name="model">college.students</field>
+            <field name="arch" type="xml">
+                <tree string="Student Tree">
+                    <field name="first_name"/>
+                    <field name="admission_no"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--     form view   -->
+        <record id="college_student_view_form" model="ir.ui.view">
+            <field name="name">college.students.form</field>
+            <field name="model">college.students</field>
+            <field name="arch" type="xml">
+                <form string="Student form">
+                    <sheet>
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" type="object" name="get_marksheet"
+                                    icon="fa-bars">
+                                <field string="Mark sheets" name="marksheet_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                                <field name="admission_no"/>
+                                <field name="admission_date"/>
+                                <field name="father"/>
+                                <field name="mother"/>
+
+                            </group>
+                            <group>
+                                <field name="communication_address"/>
+                                <field name="permanent_address"
+                                       attrs="{'invisible':[('same_as_communication', '==', True)]}"/>
+                                <field name="same_as_communication"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="semester_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
